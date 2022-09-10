@@ -11,6 +11,10 @@ import {
   radixSort as radixSortJS,
 } from "../js/sortinglib.js";
 
+import { testJS, testWASM } from "./benchmark/benchmark.js";
+
+let numbers = [];
+
 let button = document.querySelector("#startSort");
 let randomGenerator = document.querySelector("#randomGenerator");
 let randomGeneratorCount = document.querySelector("#randomGeneratorCount");
@@ -21,6 +25,17 @@ let outputElement = document.querySelector("#numberOutput");
 let select = document.querySelector("#algoSelect");
 
 let resultTable = document.querySelector("#resultTableBody");
+
+let benchmarkJS = document.querySelector("#benchmarkJS");
+let benchmarkWASM = document.querySelector("#benchmarkWASM");
+
+benchmarkJS.addEventListener("click", () => {
+  testJS(numbers);
+});
+
+benchmarkWASM.addEventListener("click", () => {
+  testWASM(numbers);
+});
 
 let rNumber = 0;
 let rAlgo = "";
@@ -34,11 +49,9 @@ button.addEventListener("click", () => {
   let iValue = input.value;
   iValue.replace(" ", "");
   let arr = iValue.split(",");
-  let numbers = arr.map(function (str) {
+  numbers = arr.map(function (str) {
     return parseInt(str);
   });
-
-  console.log(numbers);
 
   // set start time
   let start = new Date();

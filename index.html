@@ -82,6 +82,19 @@
                 Generate & Fill
               </button>
             </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <button id="benchmarkJS" class="button is-primary">
+                  Benchmark.js: JS
+                </button>
+              </div>
+
+              <div class="control">
+                <button id="benchmarkWASM" class="button is-primary">
+                  Benchmark.js: WASM
+                </button>
+              </div>
+            </div>
             <div class="field">
               <label class="label">Sorting Content</label>
               <div class="control">
@@ -111,6 +124,14 @@
       <hr />
       <div class="container">
         <div class="content">
+          <h1>Behchmark.js Logs</h1>
+          <br />
+          <div id="benchmarkJSLogs"></div>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="content">
           <h1>Sorting Results</h1>
           <br />
           <table class="table">
@@ -128,6 +149,9 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/benchmark@2.1.4/benchmark.min.js"></script>
     <script src="./src/js/index.js" type="module"></script>
+    <script src="./src/js/benchmark/benchmark.js" type="module"></script>
   </body>
 </html>

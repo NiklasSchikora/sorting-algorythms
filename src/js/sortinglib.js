@@ -1,12 +1,10 @@
 export function bubbleSort(set) {
-  console.log("bblsrt");
   for (var j = 0; j < set.length; j++) {
     for (var k = 0; k < set.length - j - 1; k++) {
       if (set[k] > set[k + 1]) {
         var temp = set[k];
         set[k] = set[k + 1];
         set[k + 1] = temp;
-        console.log("switched " + set[k] + " with " + temp);
       }
     }
   }

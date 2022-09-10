@@ -24,7 +24,9 @@ cd ./src/wasm/
 
 ```
 npm install
-// or
+
+or
+
 yarn install
 ```
 
@@ -32,7 +34,9 @@ yarn install
 
 ```
 npm run asbuild
+
 or
+
 yarn asbuild
 ```
 
