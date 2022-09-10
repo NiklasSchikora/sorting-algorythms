@@ -36,57 +36,9 @@ export function shellSort(set: i32[]): i32[] {
   return set;
 }
 
-export function countingSort(set: i32[]): i32[] {
+export function radixSort(set: i32[]): i32[] {
   if (set.length < 2) return set;
-  let maxValue = set[0];
-  // Find max index
-  for (let i = 1; i < set.length; i++) {
-    if (set[i] > maxValue) {
-      maxValue = set[i];
-    }
-  }
-  const countingArray: i32[] = [];
-  for (let i = 1; i < set.length; i++) {
-    let value = set[i];
-    if (!countingArray[value]) {
-      countingArray[value] = 0;
-    }
-    countingArray[value]++;
-  }
-  const resultArray: i32[] = [];
-  for (let i = 0; i < countingArray.length; i++) {
-    while (countingArray[i] > 0) {
-      resultArray.push(i);
-      countingArray[i]--;
-    }
-  }
-  return resultArray;
-}
-
-/*
-export function countingSortA(set: i32[]): i32[] {
-  let max = set[0];
-  let min = set[0];
-  for (let i = 0; i <= set.length; i++) {
-    if (set[i] > max) max = set[i];
-    if (set[i] < min) min = set[i];
-  }
-
-  let i,
-    z = 0,
-    count = [];
-  for (i = min; i <= max; i++) {
-    count[i] = 0;
-  }
-
-  for (i = 0; i < set.length; i++) {
-    count[set[i]]++;
-  }
-}
-*/
-
-export function radixSort(set: i32[]): i31[] {
-  if (set.length < 2) return set;
+  let temp: i32[] = [];
   let maxValue = set[0];
   // get max value of set
   for (let i = 1; i < set.length; i++) {
@@ -94,22 +46,46 @@ export function radixSort(set: i32[]): i31[] {
       maxValue = set[i];
     }
   }
-  for (let i = 0; i < maxValue.toString().length; i++) {
-    let buckets: Array<i32[]> = [[], [], [], [], [], [], [], [], [], []];
-    for (let j = 0; j < set.length; j++) {
-      let num = getNum(set[i], i);
-      buckets[num].push(set[j]);
+  const iterationCount = maxValue.toString().length;
+  for (let digit = 0; digit < iterationCount; digit++) {
+    let bucketArray = new Array<i32[]>(10);
+    for (let i = 0; i < set.length; i++) {
+      const digitValue: i32 = (Math.floor(set[i] / Math.pow(10, digit)) %
+        10) as i32;
+      bucketArray[digitValue].push(set[i]);
     }
-    set = buckets.flat();
+    for (let c = 0; c < bucketArray.length; c++) {
+      temp = temp.concat(bucketArray[c]);
+    }
   }
-  return set.flat();
+  return temp;
 }
 
-function getNum(num: i32, index: i32): i32 {
-  const strNum = num.toString().split("");
-  let end = strNum.length - 1;
-  const foundNum = strNum[end - index];
-
-  if (!foundNum) return 0;
-  else return parseInt(foundNum);
+export function countingSort(set: i32[]): i32[] {
+  let max: i32, min: i32;
+  // Find min and max values
+  max = set[0];
+  min = set[0];
+  for (let i = 1; i < set.length; i++) {
+    if (set[i] > max) max = set[i];
+    if (set[i] < min) min = set[i];
+  }
+  let i = min,
+    j = 0,
+    len = set.length,
+    count = [];
+  for (i; i <= max; i++) {
+    count[i] = 0;
+  }
+  for (i = 0; i < len; i++) {
+    count[set[i]] += 1;
+  }
+  for (i = min; i <= max; i++) {
+    while (count[i] > 0) {
+      set[j] = i;
+      j++;
+      count[i]--;
+    }
+  }
+  return set;
 }

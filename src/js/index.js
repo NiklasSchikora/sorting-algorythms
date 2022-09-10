@@ -2,6 +2,7 @@ import {
   bubbleSort as bubbleSortWASM,
   shellSort as shellSortWASM,
   countingSort as countingSortWASM,
+  radixSort as radixSortWASM,
 } from "../wasm/build/release.js";
 import {
   bubbleSort as bubbleSortJS,
@@ -77,6 +78,11 @@ const runSortingAlgorythm = (algoId, arr) => {
       rAlgo = "Shell Sort";
       rRuntume = "WASM";
       output = shellSortWASM(arr);
+      break;
+    case "3":
+      rAlgo = "Radix Sort";
+      rRuntume = "WASM";
+      output = radixSortWASM(arr);
       break;
     case "4":
       rAlgo = "Counting Sort";
