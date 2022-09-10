@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort</title>
+    <link rel="stylesheet" href="./src/css/bulma.min.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar has-background-white-ter p-4"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img
+            src="https://bulma.io/images/bulma-logo.png"
+            alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+            width="112"
+            height="28"
+          />
+        </a>
+      </div>
+    </nav>
+    <div class="section">
+      <div class="container">
+        <div class="content">
+          <h1>Sorting Algorythm Benchmark</h1>
+          <p>Diese App vergleicht die performance von Sorting-Algorythmen</p>
+          <div>
+            <div class="field is-grouped">
+              <div class="control">
+                <label class="label">Algorythm</label>
+                <div class="select">
+                  <select id="algoSelect">
+                    <option value="1">WASM: Bubble Sort</option>
+                    <option value="2">WASM: Shell Sort</option>
+                    <option value="3">WASM: Radix Sort</option>
+                    <option value="4">WASM: Counting Sort</option>
+                    <option value="5">JS: Bubble Sort</option>
+                    <option value="6">JS: Shell Sort</option>
+                    <option value="7">JS: Radix Sort</option>
+                    <option value="8">JS: Counting Sort</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <label class="label">Random Numbers (Count, min, max)</label>
+            <div class="field is-grouped">
+              <div class="control">
+                <input
+                  id="randomGeneratorCount"
+                  class="input"
+                  type="number"
+                  placeholder="Number count"
+                  value="500"
+                />
+              </div>
+              <div class="control">
+                <input
+                  id="randomGeneratorMin"
+                  class="input"
+                  type="number"
+                  placeholder="Min value"
+                  value="0"
+                />
+              </div>
+              <div class="control">
+                <input
+                  id="randomGeneratorMax"
+                  class="input"
+                  type="number"
+                  placeholder="Max value"
+                  value="1000"
+                />
+              </div>
+              <button id="randomGenerator" class="button is-primary">
+                Generate & Fill
+              </button>
+            </div>
+            <div class="field">
+              <label class="label">Sorting Content</label>
+              <div class="control">
+                <textarea
+                  id="numberInput"
+                  class="textarea"
+                  placeholder="Sorting content"
+                ></textarea>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Sorted Content</label>
+              <div class="control">
+                <textarea
+                  id="numberOutput"
+                  class="textarea"
+                  placeholder="Sorted Content"
+                ></textarea>
+              </div>
+            </div>
+            <div class="field">
+              <button id="startSort" class="button is-primary">Sort</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="content">
+          <h1>Sorting Results</h1>
+          <br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nr.</th>
+                <th>Algorythm</th>
+                <th>Runtime</th>
+                <th>Sorted elements</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="resultTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./src/js/index.js" type="module"></script>
+  </body>
+</html>
