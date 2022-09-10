@@ -4,6 +4,12 @@ import {
   shellSort as shellSortJS,
   radixSort as radixSortJS,
 } from "../sortinglib.js";
+import {
+  bubbleSort as bubbleSortWASM,
+  shellSort as shellSortWASM,
+  countingSort as countingSortWASM,
+  radixSort as radixSortWASM,
+} from "../../wasm/build/release.js";
 
 let benchmarkJSLogs = document.querySelector("#benchmarkJSLogs");
 var randomArr = [];
@@ -26,42 +32,43 @@ suiteTestJS
   .on("cycle", (event) => {
     const benchmark = event.target;
     console.log(benchmark.toString());
-    benchmarkJSLogs.innerHTML += `<p>${benchmark.toString()} <br>Time: ${
+    benchmarkJSLogs.innerHTML += `<span>${benchmark.toString()} <br>Time: ${
       benchmark.times.cycle
-    } Seconds</p>`;
+    } Seconds</span>`;
   })
   .on("complete", function (event) {
     const suite = event.currentTarget;
     const fastestOption = suite.filter("fastest").map("name");
 
     console.log("Fastest performance: " + fastestOption);
-    benchmarkJSLogs.innerHTML += `<p><b>Result:</b></p><p>${fastestOption}</p>`;
+    benchmarkJSLogs.innerHTML += `<span><b>Result:</b><br></span><span>${fastestOption}</span>`;
   });
 
 var suiteTestWASM = new Benchmark.Suite("WASM Benchmark");
 
 suiteTestWASM
   .add("Sort#BubbleSort", () => {
-    const sorted = bubbleSortJS(randomArr);
+    const sorted = bubbleSortWASM(randomArr);
   })
   .add("Sort#ShellSort", () => {
-    const sorted = shellSortJS(randomArr);
-  })
-  .add("Sort#RadixSort", () => {
-    const sorted = radixSortJS(randomArr);
+    const sorted = shellSortWASM(randomArr);
   })
   .add("Sort#CountingSort", () => {
-    const sorted = countingSortJS(randomArr);
+    const sorted = countingSortWASM(randomArr);
   })
   .on("cycle", (event) => {
     const benchmark = event.target;
     console.log(benchmark.toString());
+    benchmarkJSLogs.innerHTML += `<span>${benchmark.toString()} <br><b>Time:</b> ${
+      benchmark.times.cycle
+    } Seconds</span><br>`;
   })
   .on("complete", function (event) {
     const suite = event.currentTarget;
     const fastestOption = suite.filter("fastest").map("name");
 
-    console.log("fastest: " + fastestOption);
+    console.log("Fastest performance: " + fastestOption);
+    benchmarkJSLogs.innerHTML += `<span><b>Result:</b><br></span><span>${fastestOption}</span>`;
   });
 
 export const testJS = (sortArray) => {
@@ -71,5 +78,5 @@ export const testJS = (sortArray) => {
 
 export const testWASM = (sortArray) => {
   randomArr = sortArray;
-  suiteTestWASM.run({ async: false });
+  suiteTestWASM.run({ async: true });
 };
