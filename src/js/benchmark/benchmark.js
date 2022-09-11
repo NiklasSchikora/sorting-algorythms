@@ -14,7 +14,7 @@ import {
 let benchmarkJSLogs = document.querySelector("#benchmarkJSLogs");
 var randomArr = [];
 
-var suiteTestJS = new Benchmark.Suite("Sorting algorithms test");
+var suiteTestJS = new Benchmark.Suite("JS: Sorting algorithms test");
 
 suiteTestJS
   .add("Sort#BubbleSort", () => {
@@ -43,6 +43,8 @@ suiteTestJS
     console.log("Fastest performance: " + fastestOption);
     benchmarkJSLogs.innerHTML += `<span><b>Result:</b><br></span><span>${fastestOption}</span>`;
   });
+
+// Test WASM
 
 var suiteTestWASM = new Benchmark.Suite("WASM Benchmark");
 

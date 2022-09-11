@@ -36,29 +36,31 @@ export function shellSort(set: i32[]): i32[] {
   return set;
 }
 
-export function radixSort(set: i32[]): i32[] {
-  if (set.length < 2) return set;
-  let temp: i32[] = [];
-  let maxValue = set[0];
-  // get max value of set
-  for (let i = 1; i < set.length; i++) {
-    if (set[i] > maxValue) {
-      maxValue = set[i];
+export function radixSort(inputArray: i32[]): i32[] {
+  if (inputArray.length < 2) return inputArray;
+  let maxValue = inputArray[0];
+  for (let i = 1; i < inputArray.length; i++) {
+    if (inputArray[i] > maxValue) {
+      maxValue = inputArray[i];
     }
   }
   const iterationCount = maxValue.toString().length;
   for (let digit = 0; digit < iterationCount; digit++) {
-    let bucketArray = new Array<i32[]>(10);
-    for (let i = 0; i < set.length; i++) {
-      const digitValue: i32 = (Math.floor(set[i] / Math.pow(10, digit)) %
-        10) as i32;
-      bucketArray[digitValue].push(set[i]);
+    const bucketArray = new Array<i32[]>(10);
+    for (let i = 0; i < 10; i++) {
+      bucketArray[i] = [];
     }
-    for (let c = 0; c < bucketArray.length; c++) {
-      temp = temp.concat(bucketArray[c]);
+    for (let i = 0; i < inputArray.length; i++) {
+      const digitValue = Math.floor(inputArray[i] / Math.pow(10, digit)) % 10;
+      bucketArray[digitValue as i32].push(inputArray[i]);
     }
+    let tmp: i32[] = [];
+    for (let i = 0; i < bucketArray.length; i++) {
+      tmp = tmp.concat(bucketArray[i]);
+    }
+    inputArray = tmp;
   }
-  return temp;
+  return inputArray;
 }
 
 export function countingSort(set: i32[]): i32[] {
