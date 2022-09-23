@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort</title>
+    <link rel="stylesheet" href="./src/css/bulma.min.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar has-background-dark p-4"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://niklas-schikora.de">
+          <img
+            src="./src/assets/signet.png"
+            alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+            class="pr-2"
+          />
+          <h2 class="has-text-white">| Niklas Schikora</h2>
+        </a>
+      </div>
+    </nav>
+    <div class="section">
+      <div class="container">
+        <div class="content">
+          <h1>🧩 Sieve of Eratosthenes</h1>
+          <p>
+            This app is an implementation of an algorithm for generating all
+            prime numbers between 2 and an upper limit. This algorithm is
+            commnonly refered to as <i>sieve of eratosthenes</i>. This
+            implementation benchmark contains a version built as conventional
+            JavaScript method and a version bilt as WebAssembly module using
+            AssemblyScript.
+          </p>
+          <div>
+            <label class="label">Implementation</label>
+            <div class="field is-grouped">
+              <div class="control">
+                <label class="radio">
+                  <input id="js_radio" type="radio" name="answer" checked />
+                  JavaScript
+                </label>
+                <label class="radio">
+                  <input id="wasm_radio" type="radio" name="answer" />
+                  WebAssembly (AssemblyScript)
+                </label>
+              </div>
+            </div>
+            <label class="label">Generate primes</label>
+            <div class="field is-grouped">
+              <div class="control">
+                <input
+                  id="upperLimit"
+                  class="input"
+                  type="number"
+                  placeholder="Upper limit"
+                  value="1000"
+                />
+              </div>
+              <button id="generatePrimes" class="button is-primary">
+                Generate
+              </button>
+            </div>
+            <div class="field">
+              <label class="label">Generated Primes</label>
+              <div class="control">
+                <textarea
+                  id="numberOutput"
+                  class="textarea"
+                  placeholder="Generated Primes"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="content">
+          <h1>Prime Results</h1>
+          <br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nr.</th>
+                <th>Runtime</th>
+                <th>Upper limit</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="resultTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/benchmark@2.1.4/benchmark.min.js"></script>
+    <script src="./src/js/b_primes.js" type="module"></script>
+    <script src="./src/js/benchmark/benchmark.js" type="module"></script>
+  </body>
+</html>

@@ -3,13 +3,13 @@ import {
   countingSort as countingSortJS,
   shellSort as shellSortJS,
   radixSort as radixSortJS,
-} from "../sortinglib.js";
+} from "../algorithms/sortinglib.js";
 import {
   bubbleSort as bubbleSortWASM,
   shellSort as shellSortWASM,
   countingSort as countingSortWASM,
   radixSort as radixSortWASM,
-} from "../../wasm/build/release.js";
+} from "../../sorting/build/release.js";
 
 let benchmarkJSLogs = document.querySelector("#benchmarkJSLogs");
 var randomArr = [];
@@ -32,16 +32,20 @@ suiteTestJS
   .on("cycle", (event) => {
     const benchmark = event.target;
     console.log(benchmark.toString());
-    benchmarkJSLogs.innerHTML += `<span>${benchmark.toString()} <br>Time: ${
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${
       benchmark.times.cycle
-    } Seconds</span>`;
+    } Seconds</span><br><span>Elapsed: ${
+      benchmark.times.elapsed
+    } Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
   })
   .on("complete", function (event) {
     const suite = event.currentTarget;
     const fastestOption = suite.filter("fastest").map("name");
 
     console.log("Fastest performance: " + fastestOption);
-    benchmarkJSLogs.innerHTML += `<span><b>Result:</b><br></span><span>${fastestOption}</span>`;
+    benchmarkJSLogs.innerHTML += `<br><span><b>Result:</b><br></span><span>${fastestOption}</span>`;
   });
 
 // Test WASM
@@ -55,22 +59,29 @@ suiteTestWASM
   .add("Sort#ShellSort", () => {
     const sorted = shellSortWASM(randomArr);
   })
+  .add("Sort#RadixSort", () => {
+    const sorted = radixSortWASM(randomArr);
+  })
   .add("Sort#CountingSort", () => {
     const sorted = countingSortWASM(randomArr);
   })
   .on("cycle", (event) => {
     const benchmark = event.target;
     console.log(benchmark.toString());
-    benchmarkJSLogs.innerHTML += `<span>${benchmark.toString()} <br><b>Time:</b> ${
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${
       benchmark.times.cycle
-    } Seconds</span><br>`;
+    } Seconds</span><br><span>Elapsed: ${
+      benchmark.times.elapsed
+    } Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
   })
   .on("complete", function (event) {
     const suite = event.currentTarget;
     const fastestOption = suite.filter("fastest").map("name");
 
     console.log("Fastest performance: " + fastestOption);
-    benchmarkJSLogs.innerHTML += `<span><b>Result:</b><br></span><span>${fastestOption}</span>`;
+    benchmarkJSLogs.innerHTML += `<br><span><b>Result:</b><br></span><span>${fastestOption}</span>`;
   });
 
 export const testJS = (sortArray) => {

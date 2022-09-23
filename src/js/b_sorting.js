@@ -3,13 +3,13 @@ import {
   shellSort as shellSortWASM,
   countingSort as countingSortWASM,
   radixSort as radixSortWASM,
-} from "../wasm/build/release.js";
+} from "../sorting/build/release.js";
 import {
   bubbleSort as bubbleSortJS,
   countingSort as countingSortJS,
   shellSort as shellSortJS,
   radixSort as radixSortJS,
-} from "../js/sortinglib.js";
+} from "./algorithms/sortinglib.js";
 
 import { testJS, testWASM } from "./benchmark/benchmark.js";
 
