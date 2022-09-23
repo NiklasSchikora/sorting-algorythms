@@ -4,31 +4,57 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sort</title>
+    <title>Sorting Algorythms - Benchmark</title>
     <link rel="stylesheet" href="./src/css/bulma.min.css" />
+    <style>
+      .navbar {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+    </style>
   </head>
   <body>
-    <nav
-      class="navbar has-background-dark p-4"
-      role="navigation"
-      aria-label="main navigation"
-    >
+    <nav class="navbar py-2" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://niklas-schikora.de">
-          <img
-            src="./src/assets/signet.png"
-            alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
-            class="pr-2"
-          />
-          <h2 class="has-text-white">| Niklas Schikora</h2>
+        <a class="navbar-item" href="./">
+          <img src="./src/assets/signet.png" />
         </a>
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="./index.html"> Sorting Algorithms </a>
+
+          <a class="navbar-item" href="./eratosthenes.html">
+            Siev of Eratosthenes
+          </a>
+          <a class="navbar-item" href="./mandelbrot.html"> Mandelbrot Set </a>
+        </div>
       </div>
     </nav>
     <div class="section">
       <div class="container">
         <div class="content">
-          <h1>Sorting Algorythm Benchmark</h1>
-          <p>Diese App vergleicht die performance von Sorting-Algorythmen</p>
+          <h1>#️⃣ Sorting Algorythm Benchmark</h1>
+          <p>
+            This app represents the implementation of several sorting algorythms
+            in JavaScript and WebAassembly. It also provides usefull metadata
+            and information of the algorythm perfoemance and enables
+            benchmarking between the different implementations in JavaScript and
+            WebAssembly. The WebAssemby implementations have been created using
+            AssemblyScript.
+          </p>
           <div>
             <div class="field is-grouped">
               <div class="control">
