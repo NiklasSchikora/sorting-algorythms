@@ -8,7 +8,7 @@ const config = {
   x: -0.743644786,
   y: 0.1318252536,
   d: 0.00029336,
-  iterations: 10000,
+  iterations: 1000,
 };
 
 let rNumber = 0;
@@ -53,3 +53,52 @@ const appendResult = () => {
     </tr>`;
   resultTable.innerHTML = current;
 };
+
+let benchmarkJSLogs = document.querySelector("#benchmarkJSLogs");
+var suiteTestWASM = new Benchmark.Suite("WASM Benchmark");
+
+suiteTestWASM
+  .add("Render#Mandelbrot#WASM", () => {
+    wasmMandelbrot(ctx, config);
+  })
+  .on("cycle", (event) => {
+    const benchmark = event.target;
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${benchmark.times.cycle
+      .toString()
+      .replace(
+        ".",
+        ","
+      )} Seconds</span><br><span>Elapsed: ${benchmark.times.elapsed
+      .toString()
+      .replace(".", ",")} Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
+  });
+
+document.querySelector("#benchmarkWasm").addEventListener("click", () => {
+  suiteTestWASM.run({ async: true });
+});
+
+var suiteTestJS = new Benchmark.Suite("JS Benchmark");
+
+suiteTestJS
+  .add("Render#Mandelbrot#JS", () => {
+    javascriptMandelbrot(ctx, config);
+  })
+  .on("cycle", (event) => {
+    const benchmark = event.target;
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${benchmark.times.cycle
+      .toString()
+      .replace(
+        ".",
+        ","
+      )} Seconds</span><br><span>Elapsed: ${benchmark.times.elapsed
+      .toString()
+      .replace(".", ",")} Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
+  });
+
+document.querySelector("#benchmarkJs").addEventListener("click", () => {
+  suiteTestJS.run({ async: true });
+});

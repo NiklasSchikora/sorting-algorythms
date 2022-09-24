@@ -90,10 +90,16 @@
                 </label>
               </div>
             </div>
-            <div class="field">
+            <div class="field is-grouped">
               <div class="control">
                 <button id="generateMandelbrot" class="button is-primary">
                   Generate
+                </button>
+                <button id="benchmarkJs" class="button is-secondary">
+                  BenchmarkJS: JS
+                </button>
+                <button id="benchmarkWasm" class="button is-secondary">
+                  BenchmarkJS: WASM
                 </button>
               </div>
             </div>
@@ -122,6 +128,14 @@
             </thead>
             <tbody id="resultTableBody"></tbody>
           </table>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="content">
+          <h1>Behchmark.js Logs</h1>
+          <br />
+          <div id="benchmarkJSLogs"></div>
         </div>
       </div>
     </div>

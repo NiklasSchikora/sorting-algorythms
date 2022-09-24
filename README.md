@@ -1,23 +1,24 @@
-# Sorting Algorythms 🖥
+# WebAssembly Benchmark 🖥
 
-This project enables comparison and benchmarking of different sorting algorithms implemented in JavaScript and WebAssembly (via AssemblyScript).
+This project resembles an implementation of several algorythms and scenarios that try to compare benchmark perfoemance between JavaScript and WebAssembly (implemented via AssemblyScript).
 
-Currently supported algorythms:
+Currently implemented algorythms:
 
-- Bubble Sort
-- Shell Sort
-- Radix Sort
-- Counting Sort
+- A variety of sorting algorythms
+- Sieve of Eratosthenes
+- Vosualization of the Mandelbrot Set
 
 ... looking to implement more algorythms in the future.
 
 ## Installation
 
 1. Clone this repository
-2. Navigate into the wasm-directory
+2. Navigate into the wasm-directories (primes and sorting)
 
 ```
-cd ./src/wasm/
+cd ./src/sorting/
+// &
+cd ./src/primes/
 ```
 
 3. Install assembly-script dependencies
