@@ -62,9 +62,9 @@
           <p>
             This app is an implementation of an algorithm for generating all
             prime numbers between 2 and an upper limit. This algorithm is
-            commnonly refered to as <i>sieve of eratosthenes</i>. This
+            commnonly referred to as <i>sieve of Eratosthenes</i>. This
             implementation benchmark contains a version built as conventional
-            JavaScript method and a version bilt as WebAssembly module using
+            JavaScript method and a version built as WebAssembly module using
             AssemblyScript.
           </p>
           <div>
@@ -92,9 +92,17 @@
                   value="1000"
                 />
               </div>
-              <button id="generatePrimes" class="button is-primary">
-                Generate
-              </button>
+              <div class="field is-grouped">
+                <button id="generatePrimes" class="button is-primary">
+                  Generate
+                </button>
+                <button id="benchmarkJs" class="button is-secondary">
+                  BenchmarkJS: JS
+                </button>
+                <button id="benchmarkWasm" class="button is-secondary">
+                  BenchmarkJS: WASM
+                </button>
+              </div>
             </div>
             <div class="field">
               <label class="label">Generated Primes</label>
@@ -125,6 +133,14 @@
             </thead>
             <tbody id="resultTableBody"></tbody>
           </table>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="content">
+          <h1>Behchmark.js Logs</h1>
+          <br />
+          <div id="benchmarkJSLogs"></div>
         </div>
       </div>
     </div>

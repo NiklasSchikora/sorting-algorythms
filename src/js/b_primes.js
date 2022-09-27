@@ -41,3 +41,52 @@ const appendResult = () => {
   </tr>`;
   resultTable.innerHTML = current;
 };
+
+let benchmarkJSLogs = document.querySelector("#benchmarkJSLogs");
+var suiteTestWASM = new Benchmark.Suite("WASM Benchmark");
+
+suiteTestWASM
+  .add("Render#Eratosthenes#WASM", () => {
+    let res = findPrimesWASM(500000);
+  })
+  .on("cycle", (event) => {
+    const benchmark = event.target;
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${benchmark.times.cycle
+      .toString()
+      .replace(
+        ".",
+        ","
+      )} Seconds</span><br><span>Elapsed: ${benchmark.times.elapsed
+      .toString()
+      .replace(".", ",")} Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
+  });
+
+document.querySelector("#benchmarkWasm").addEventListener("click", () => {
+  suiteTestWASM.run({ async: true });
+});
+
+var suiteTestJS = new Benchmark.Suite("JS Benchmark");
+
+suiteTestJS
+  .add("Render#Eratosthenes#JS", () => {
+    let res = findPrimes(500000);
+  })
+  .on("cycle", (event) => {
+    const benchmark = event.target;
+    benchmarkJSLogs.innerHTML += `<span><b>${benchmark.toString()}</b> <br>Time: ${benchmark.times.cycle
+      .toString()
+      .replace(
+        ".",
+        ","
+      )} Seconds</span><br><span>Elapsed: ${benchmark.times.elapsed
+      .toString()
+      .replace(".", ",")} Seconds</span><br><span>Timestamp: ${
+      benchmark.times.timeStamp
+    }</span><br><hr>`;
+  });
+
+document.querySelector("#benchmarkJs").addEventListener("click", () => {
+  suiteTestJS.run({ async: true });
+});

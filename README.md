@@ -1,14 +1,14 @@
 # WebAssembly Benchmark 🖥
 
-This project resembles an implementation of several algorythms and scenarios that try to compare benchmark perfoemance between JavaScript and WebAssembly (implemented via AssemblyScript).
+This project resembles an implementation of several algorithms and scenarios that try to compare benchmark performance between JavaScript and WebAssembly (implemented via AssemblyScript).
 
-Currently implemented algorythms:
+Currently implemented algorithms:
 
-- A variety of sorting algorythms
+- A variety of sorting algorithms
 - Sieve of Eratosthenes
-- Vosualization of the Mandelbrot Set
+- Visualization of the Mandelbrot Set
 
-... looking to implement more algorythms in the future.
+... looking to implement more algorithms in the future.
 
 ## Installation
 
