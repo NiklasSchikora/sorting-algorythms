@@ -15,7 +15,7 @@ const imports = {
   },
 };
 
-const res = await fetch("/src/mandelbrot/mandelbrot.wasm");
+const res = await fetch("./src/mandelbrot/mandelbrot.wasm");
 const buffer = await res.arrayBuffer();
 const module = await WebAssembly.instantiate(buffer, imports);
 const { mandelbrot, getDataBuffer, memory } = module.instance.exports;
